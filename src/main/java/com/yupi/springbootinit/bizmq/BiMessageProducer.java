@@ -9,17 +9,15 @@ import javax.annotation.Resource;
  * @author Rocky
  */
 @Component
-public class MyMessageProducer {
+public class BiMessageProducer {
 
     @Resource
     private RabbitTemplate rabbitTemplate;
 
     /**
-     * @param exchange   交换机
-     * @param routingKey 路由密钥
-     * @param message    消息
+     * 发送消息
      */
-    public void sendMessage(String exchange, String routingKey, String message) {
-        rabbitTemplate.convertAndSend(exchange, routingKey, message);
+    public void sendMessage(String message) {
+        rabbitTemplate.convertAndSend(BiMqConstant.BI_EXCHANGE_NAME, BiMqConstant.BI_ROUTING_KEY, message);
     }
 }
